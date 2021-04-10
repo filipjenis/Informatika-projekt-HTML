@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>MKTechnic</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="style.css">
+        <link rel="icon" type="image/x-icon" href="favicon.ico">
+        <script src="https://kit.fontawesome.com/587277cc2a.js" crossorigin="anonymous"></script>
+
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        
+        <style>
+        body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif; font-weight:400; margin:10px 0}
+        h1{font-size:36px}h2{font-size:30px}h3{font-size:24px}h4{font-size:20px}h5{font-size:18px}h6{font-size:16px}
+        h1,button {font-family: "Montserrat", sans-serif}
+        </style>
+        
+    </head>
+    <body>
+        <div class="navbar">
+            <a href="#" class="navbar-item" style="background-color: hsl(207, 88%, 59%);">Home</a>
+            <a href="#" class="navbar-item">Download</a>
+            <a href="contact.html" class="navbar-item">Contact us</a>
+            <!--<a href="#" class="navbar-item">Link 3</a>
+            <a href="#" class="navbar-item">Link 4</a>-->
+        </div>
+        <header class="header" style="padding:128px 16px">
+            <h1 style="margin: 16px; font-size: 64px;">Makeshift technic</h1>
+            <p style="font-size: 18px;"><i>~Brought to you by Very Smoll Productions~</i></p>
+            <button id="btn" onclick="document.getElementById('scrollHere').scrollIntoView({block:'start',inline:'nearest',behavior:'smooth'});">Learn More</button>
+        </header>
+        <div id="scrollHere" class="grid" style="background-color: #f1f1f1; width: 100%;">
+            <div style="margin-left: auto; margin-right: auto; float: left; width: 100%; max-width: 980px;">
+                <div style="padding-left: 32px;">
+                    <h1>What does it do?</h1>
+                    <h5 style="padding-top: 32px; padding-bottom: 32px;">
+                        Makeshift technic, as the name suggests, is a DIY technicpack launcher. For users: install, update, uninstall and manage your favourite modpack from within this launcher. For modders: update your modpack, official server list. Manage mods and configs. 
+                    </h5>
+                    <h3 class="text-grey">How is it done?</h3><br>
+                    <p class="text-grey">On every launch/ longer periods of inactivity, a modpack list is loaded. This list is then checked against user's installed mods. If a match is found, the app will pull the modpack's (mt) configuration file. This file contains several options, documented in the API section. But the gist of it, is that all mods have a server and client side sha256 checksum, which changes with the file. So when a client side checksum does not match the one on the server, you know it's a different one</p>
+                </div>
+            </div>
+        </div>
+        <div class="grid" style="width: 100%;">
+            <div style="margin-left: auto; margin-right: auto; float: right; width: 100%; max-width: 980px;">
+                <div style="padding-right: 32px;">
+                    <h1>Why did you do this?</h1>
+                    <h5 style="padding-top: 32px; padding-bottom: 32px;">
+                        The main driving point behind this project is to offer support for people with new/ migrated microsoft accounts. The team behind Technic has very clearly stated that they have no intentions on adopting the new OAuth 2.0 system leaving a big chunk of the community behind. Upon looking into this new system, i have decided to support it in my own client.
+                    </h5>
+                    <h3 class="text-grey">Secondary driving points</h3><br>
+                    <p class="text-grey">
+                        Me and my friends like playing modded Minecraft together, however many of us have new accounts via Microsoft, or a cracked version of the game. This creates a hassle to keep our mod list in sync. With this launcher, we are hoping to eliminate this issue once and for all.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <footer style="padding-top: 64px; padding-bottom: 64px;" class="footer">  
+            <div style="padding-top: 32px; padding-bottom: 32px; font-size:24px;">
+                <a href="https://www.facebook.com/" target="_blank"><i class="fab fa-facebook hover-opacity"></i></a>
+                <a href="https://www.instagram.com/" target="_blank"><i class="fab fa-instagram hover-opacity"></i></a>
+                <a href="https://twitter.com/" target="_blank"><i class="fab fa-twitter hover-opacity"></i></a>
+                <a href="https://discord.com/" target="_blank"><i class="fab fa-discord hover-opacity"></i></a>
+            </div>
+            Created by<br>
+            Hugo Bohácsek & Filip Jenis
+            <br>
+        </footer>
+
+    </body>
+</html>

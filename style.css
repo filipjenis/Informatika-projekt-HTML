@@ -1,0 +1,115 @@
+.navbar{
+    position: fixed;
+    width: 100%;
+    top: 0;
+    display: inline-block;
+    overflow: hidden;
+    background-color: hsl(207,76%, 43%);
+    box-shadow:0 4px 10px 0 rgba(0,0,0,0.2),0 4px 20px 0 rgba(0,0,0,0.19);
+    font-family: "Montserrat", sans-serif;
+    /*background-color: hsl(207, 100%, 57%);*/
+}
+.navbar-item{
+    padding: 12px 24px;
+    float: left;
+    width: auto;
+    border: none;
+    display: block;
+    outline: 0;
+    text-align: center;
+    cursor: pointer;
+    text-decoration: none;
+    color: white;
+    transition: background-color 0.4s;
+}
+.navbar-item:hover{
+    background-color: hsl(207, 100%, 57%);
+}
+.header{
+    display: table;
+    padding: 0.01em 16px;
+    background-color: #2196F3;
+    display: inline-block;
+    width: 100%;
+    text-align: center;
+}
+#btn{
+    display: inline-block;
+    padding: 12px 24px;
+    vertical-align: middle;
+    text-align: center;
+    cursor: pointer;
+    background-color: black;
+    color: white;
+    border: none;
+    font-size: 18px;
+    margin-top: 16px;
+    transition: background-color 0.4s, color 0.4s;
+}
+#btn:hover{
+    background-color: white;
+    color: black;
+}
+.text-grey{
+    color: #757575;
+}
+.grid{
+    display: table;
+    padding: 64px 16px;
+    background-color: inherit;
+}
+.footer{
+    padding: 64px 16px 64px 16px;
+    display: table;
+    text-align: center;
+    opacity: 0.6;
+    text-decoration: none;
+    width: 100%;
+}
+.hover-opacity:hover{
+    opacity:0.60;
+}
+.btn{
+    border:none;
+    display:inline-block;
+    padding:8px 16px;
+    vertical-align:middle;
+    overflow:hidden;
+    text-decoration:none;
+    color:inherit;
+    background-color:inherit;
+    text-align:center;
+    cursor:pointer;
+    white-space:nowrap
+}
+.alert {
+    padding: 20px;
+    background-color: #4CAF50;
+    color: white;
+    opacity: 1;
+    transition: opacity 0.6s;
+    margin-bottom: 15px;
+}
+.closebtn {
+    margin-left: 15px;
+    color: white;
+    font-weight: bold;
+    float: right;
+    font-size: 22px;
+    line-height: 20px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+.closebtn:hover {
+    color: black;
+}
+a{
+    color: inherit;
+}
+.inp{
+    padding:8px;
+    display:block;
+    border:none;
+    border-bottom:1px solid #ccc;
+    width:100%;
+}

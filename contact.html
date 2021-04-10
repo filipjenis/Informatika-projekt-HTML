@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Placeholder</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="style.css">
+        <link rel="icon" type="image/x-icon" href="favicon.ico">
+        <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+        <script src="https://kit.fontawesome.com/587277cc2a.js" crossorigin="anonymous"></script>
+
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        
+        <style>
+        body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
+        h1,button {font-family: "Montserrat", sans-serif}
+        </style>
+        
+    </head>
+    <body>
+        <!--<div class="w3-bar w3-red w3-card w3-left-align w3-large">-->
+        <div class="navbar">
+            <a href="index.html" class="navbar-item">Home</a>
+            <a href="#" class="navbar-item">Download</a>
+            <a href="#" class="navbar-item" style="background-color: hsl(207, 88%, 59%);">Contact us</a>
+            <!--<a href="#" class="navbar-item">Link 3</a>
+            <a href="#" class="navbar-item">Link 4</a>-->
+        </div>
+        <div id="scrollHere" class="grid" style="background-color: #f1f1f1;">
+            <div class="w3-twothird">
+                <div class="w3-twothird">
+                <h1>How can you contact us?</h1>
+                <h5 class="w3-padding-32">
+                    The main way to get in touch with us, is to join our discord server. Alternatively, you can fill out the form below. 
+                </h5>
+                </div>
+                <div style="float: left; width: 66.66%; ">
+                    <form class="w3-container" style="background-color: white;" id="submitForm">
+                        &nbsp;<br>
+                        <label class="text-grey">Email</label>
+                        <input class="inp" type="text">
+                        <label class="text-grey">Text</label>
+                        <textarea class="inp"></textarea>
+                        <button style="margin-top: 22px; background-color: hsl(207, 100%, 57%);" class="btn" type="submit">Submit ❯</button><br>&nbsp;
+                    </form>
+                </div>
+                <div class="w3-third w3-center">
+                    <iframe src="https://discord.com/widget?id=427155842840920075&theme=dark" width="350" height="500" allowtransparency="true" frameborder="0" sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts"></iframe>
+                </div>
+            </div>
+        </div>
+        <div id="alertContainer">
+        
+        </div>
+        <footer class="footer">
+            <div style="padding-top: 32px; padding-bottom: 32px; font-size:24px">
+                <a href="https://www.facebook.com/" target="_blank"><i class="fab fa-facebook hover-opacity"></i></a>
+                <a href="https://www.instagram.com/" target="_blank"><i class="fab fa-instagram hover-opacity"></i></a>
+                <a href="https://twitter.com/" target="_blank"><i class="fab fa-twitter hover-opacity"></i></a>
+                <a href="https://discord.com/" target="_blank"><i class="fab fa-discord hover-opacity"></i></a>
+            </div>
+            Created by<br>
+            Hugo Bohácsek & Filip Jenis
+            <br> 
+        </footer>
+        <script>
+            document.getElementById("submitForm").addEventListener("submit",e=>{
+                e.preventDefault()
+                Array.prototype.slice.call(document.getElementsByClassName("inp")).forEach(element => {
+                    element.value = ""
+                });
+                document.getElementById("alertContainer").innerHTML += `<div class="alert"><span class="closebtn">&times;</span><strong>Success!</strong> Indicates a successful or positive action.</div>`
+                var close = document.getElementsByClassName("closebtn");
+                for (var i = 0; i < close.length; i++) {
+                    close[i].onclick = function(){
+                    var div = this.parentElement;
+                    div.style.opacity = "0";
+                    setTimeout(function(){ div.style.display = "none"; }, 600);
+                }
+                }
+            })
+            </script>
+    </body>
+</html>
+<!--https://www.w3schools.com/howto/tryit.asp?filename=tryhow_js_alerts-->
