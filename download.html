@@ -41,9 +41,7 @@
                     </div>
                 </div>
             </p>
-
-
-            <button id="btn" onclick="document.getElementById('scrollHere').scrollIntoView({block:'start',inline:'nearest',behavior:'smooth'});">How to install</button>
+            <button type="button" id="btn" onclick="f_scroll()">How to install</button>
         </header>
         <div id="scrollHere" class="grid" style="background-color: #f1f1f1; width: 100%;">
             <div style="margin-left: auto; margin-right: auto; float: left; width: 100%; max-width: 980px;">
@@ -130,6 +128,17 @@
                 }
             }
             window.addEventListener('load', getOs)
+            function f_scroll(){
+                here = document.getElementById('scrollHere')
+                here.scrollIntoView({block:'start',inline:'nearest',behavior:'smooth'})
+                here.classList.add("flash")
+                clearTimeout(anim)
+                anim = setTimeout(() => {
+                    here = document.getElementById("scrollHere")
+                    here.classList.remove("flash")
+                }, 2000);
+            }
+            anim = null
         </script>
     </body>
 </html>
