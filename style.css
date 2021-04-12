@@ -1,6 +1,6 @@
 .navbar{
     position: fixed;
-    width: 100%;
+    width: 100vw;
     top: 0;
     display: inline-block;
     overflow: hidden;
@@ -55,16 +55,18 @@
 }
 .grid{
     display: table;
-    padding: 64px 16px;
+    padding: 64px 0px 64px 0px;
     background-color: inherit;
+    max-width: 100vw;
 }
 .footer{
-    padding: 64px 16px 64px 16px;
+    padding: 64px 0px 64px 16px;
     display: table;
     text-align: center;
     opacity: 0.6;
     text-decoration: none;
-    width: 100%;
+    width: 100vw;
+    max-width: 100vw;
 }
 .hover-opacity:hover{
     opacity:0.60;
