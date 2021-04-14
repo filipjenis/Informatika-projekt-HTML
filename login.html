@@ -29,35 +29,18 @@
             <a href="#" class="navbar-item">Link 4</a>-->
         </div>
         <header class="header" style="padding:128px 0px 128px 0px">
-            <h1 style="margin: 16px; font-size: 64px;">Makeshift technic</h1>
-            <p style="font-size: 18px;"><i>~Brought to you by Very Smoll Productions~</i></p>
-            <button id="btn" onclick="document.getElementById('scrollHere').scrollIntoView({block:'start',inline:'nearest',behavior:'smooth'});">Learn More</button>
+            <h1 style="margin: 16px; font-size: 64px;">Log into the admin panel</h1>
         </header>
-        <div id="scrollHere" class="grid" style="background-color: #f1f1f1; width: 100%;">
-            <div style="margin-left: auto; margin-right: auto; float: left; width: 100%; max-width: 980px;">
-                <div style="padding-left: 32px;">
-                    <h1>What does it do?</h1>
-                    <h5 style="padding-top: 32px; padding-bottom: 32px;">
-                        Makeshift technic, as the name suggests, is a DIY technicpack launcher. For users: install, update, uninstall and manage your favourite modpack from within this launcher. For modders: update your modpack, official server list. Manage mods and configs. 
-                    </h5>
-                    <h3 class="text-grey">How is it done?</h3><br>
-                    <p class="text-grey">On every launch/ longer periods of inactivity, a modpack list is loaded. This list is then checked against user's installed mods. If a match is found, the app will pull the modpack's (mt) configuration file. This file contains several options, documented in the API section. But the gist of it, is that all mods have a server and client side sha256 checksum, which changes with the file. So when a client side checksum does not match the one on the server, you know it's a different one</p>
-                </div>
-            </div>
-        </div>
-        <div class="grid" style="width: 100%;">
-            <div style="margin-left: auto; margin-right: auto; float: right; width: 100%; max-width: 980px;">
-                <div style="padding-right: 32px;">
-                    <h1>Why did you do this?</h1>
-                    <h5 style="padding-top: 32px; padding-bottom: 32px;">
-                        The main driving point behind this project is to offer support for people with new/ migrated microsoft accounts. The team behind Technic has very clearly stated that they have no intentions on adopting the new OAuth 2.0 system leaving a big chunk of the community behind. Upon looking into this new system, i have decided to support it in my own client.
-                    </h5>
-                    <h3 class="text-grey">Secondary driving points</h3><br>
-                    <p class="text-grey">
-                        Me and my friends like playing modded Minecraft together, however many of us have new accounts via Microsoft, or a cracked version of the game. This creates a hassle to keep our mod list in sync. With this launcher, we are hoping to eliminate this issue once and for all.
-                    </p>
-                </div>
-            </div>
+        <div class="grid" style="background-color: #f1f1f1; width: 100%;">
+            <form class="contactform" style="background-color: white; max-width: 50vw;" id="submitForm">
+                &nbsp;<br>
+                <label class="text-grey">Username //TODO: center me</label>
+                <input class="inp" id="name" type="text">
+                <br>
+                <label class="text-grey">Password</label>
+                <input class="inp" id="password" type="text">
+                <button style="margin-top: 22px; background-color: hsl(207, 100%, 57%);" class="btn" type="submit">Submit ❯</button><br>&nbsp;
+            </form>
         </div>
         <footer style="padding-top: 64px; padding-bottom: 64px;" class="footer">  
             <div style="padding-top: 32px; padding-bottom: 32px; font-size:24px;">
@@ -70,6 +53,24 @@
             Hugo Bohácsek & Filip Jenis
             <br>
         </footer>
-
+        <script>
+            document.getElementById("submitForm").addEventListener("submit",e=>{
+                e.preventDefault()
+                name = document.getElementById("name").value
+                password = document.getElementById("password").value
+                const url = `http://mkt.myddns.me/shared/MKTechnic-website/adminLogin.php?name=${name}&password=${password}`
+                var xmlHttp = new XMLHttpRequest()
+                xmlHttp.open("GET",url,false)
+                xmlHttp.send(null)
+                response = xmlHttp.responseText
+                console.log(response)
+                if (response === "0"){
+                    console.log("here")
+                }else{
+                    localStorage["userData"] = response
+                    location.href = "adminPanel.html"
+                }
+            })
+        </script>
     </body>
 </html>
