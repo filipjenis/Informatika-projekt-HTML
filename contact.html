@@ -41,10 +41,10 @@
                     <form class="form" style="background-color: white;" id="submitForm">
                         &nbsp;<br>
                         <label class="text-grey">Email</label>
-                        <input class="inp" type="text">
+                        <input id="email" class="inp" type="text">
                         <br>
                         <label class="text-grey">Text</label>
-                        <textarea class="inp"></textarea>
+                        <textarea class="inp" id="text"></textarea>
                         <button style="margin-top: 22px; background-color: hsl(207, 100%, 57%);" class="btn" type="submit">Submit ❯</button><br>&nbsp;
                     </form>
                 </div>
@@ -70,17 +70,27 @@
         <script>
             document.getElementById("submitForm").addEventListener("submit",e=>{
                 e.preventDefault()
-                Array.prototype.slice.call(document.getElementsByClassName("inp")).forEach(element => {
-                    element.value = ""
-                });
-                document.getElementById("alertContainer").innerHTML += `<div class="alert"><span class="closebtn">&times;</span><strong>Success!</strong> Indicates a successful or positive action.</div>`
-                var close = document.getElementsByClassName("closebtn");
-                for (var i = 0; i < close.length; i++) {
-                    close[i].onclick = function(){
-                    var div = this.parentElement;
-                    div.style.opacity = "0";
-                    setTimeout(function(){ div.style.display = "none"; }, 600);
-                }
+                email = document.getElementById("email").value
+                text = document.getElementById("text").value
+                const url = `http://mkt.myddns.me/shared/MKTechnic-website/createTicket.php?email=${email}&text=${text}`
+                var xmlHttp = new XMLHttpRequest()
+                xmlHttp.open("GET",url,false)
+                xmlHttp.send(null)
+                response = xmlHttp.responseText
+                console.log(response)
+                if (response==="ok"){
+                    Array.prototype.slice.call(document.getElementsByClassName("inp")).forEach(element => {
+                        element.value = ""
+                    });
+                    document.getElementById("alertContainer").innerHTML += `<div class="alert"><span class="closebtn">&times;</span><strong>Success!</strong> Indicates a successful or positive action.</div>`
+                    var close = document.getElementsByClassName("closebtn");
+                    for (var i = 0; i < close.length; i++) {
+                        close[i].onclick = function(){
+                        var div = this.parentElement;
+                        div.style.opacity = "0";
+                        setTimeout(function(){ div.style.display = "none"; }, 600);
+                    }
+                    }
                 }
             })
             </script>
