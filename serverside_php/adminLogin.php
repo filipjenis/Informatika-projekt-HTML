@@ -1,4 +1,4 @@
-<?php header('Access-Control-Allow-Origin: *'); ?><!-- for tsting purposes -->
+<?php header('Access-Control-Allow-Origin: *'); ?><!-- for testing purposes -->
 <?php
     require "../dbConnect.php"; // connects to the database (mariadb) and you're not getting this file.
     if (defined('STDIN')) {
