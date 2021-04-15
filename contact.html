@@ -80,10 +80,12 @@
                 response = xmlHttp.responseText
                 console.log(response)
                 if (response==="ok"){
-                    Array.prototype.slice.call(document.getElementsByClassName("inp")).forEach(element => {
+                    /*Array.prototype.slice.call(document.getElementsByClassName("inp")).forEach(element => {
                         element.value = ""
-                    });
-                    document.getElementById("alertContainer").innerHTML += `<div class="alert"><span class="closebtn">&times;</span><strong>Success!</strong> Indicates a successful or positive action.</div>`
+                    });*/
+                    document.getElementById("email").value=""
+                    document.getElementById("text").value=""
+                    document.getElementById("alertContainer").innerHTML += `<div class="alert"><span class="closebtn">&times;</span><strong>Success!</strong>Your contact ticket has been submited succesfully.</div>`
                     var close = document.getElementsByClassName("closebtn");
                     for (var i = 0; i < close.length; i++) {
                         close[i].onclick = function(){
