@@ -1,11 +1,11 @@
-<?php header('Access-Control-Allow-Origin: *'); ?><!-- for testing purposes -->
+<?php header('Access-Control-Allow-Origin: *'); ?>
 <?php
-    require "../dbConnect.php"; // connects to the database (mariadb) and you're not getting this file.
+    require "../dbConnect.php";
     if (defined('STDIN')) {
-        $name = $argv[1];
+        $name = $db->real_escape_string($argv[1]);
         $password = sha1($argv[2]);
     } else {
-        $name = $_GET["name"];
+        $name = $db->real_escape_string($_GET["name"]);
         $password = sha1($_GET["password"]);
     }
     

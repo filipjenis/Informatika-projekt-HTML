@@ -1,8 +1,8 @@
 <?php header('Access-Control-Allow-Origin: *'); ?>
 <?php
     require "../dbConnect.php"; // connects to the database (mariadb) and you're not getting this file.
-    $email = $_GET["email"];
-    $text = $_GET["text"];
+    $email = $db->real_escape_string($_GET["email"]);
+    $text = $db->real_escape_string($_GET["text"]);
     
     $time=time();
 
