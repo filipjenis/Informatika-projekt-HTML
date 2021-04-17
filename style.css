@@ -32,6 +32,8 @@
     display: inline-block;
     width: 100%;
     text-align: center;
+    background-size: 100%;
+    background-position: center center;
 }
 #btn{
     display: inline-block;
@@ -167,6 +169,10 @@ a{
     width: 33.33%;
     text-align: center;
     display: inline-block;
+}
+header h1{
+    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: black;
 }
 
 @keyframes flash {
