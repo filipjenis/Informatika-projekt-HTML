@@ -27,12 +27,12 @@
             <a href="login.html" class="navbar-item" style="float:right;">Admin Login</a>
         </div>
         <header class="header" style="padding:128px 0px 128px 0px; background-image: url(img/index-header.png);">
-            <h1 style="margin: 16px; font-size: 64px;">Makeshift technic</h1>
-            <p style="font-size: 18px;"><i>~Brought to you by Very Smoll Productions~</i></p>
+            <h1 style="margin: 16px; font-size: 64px; color: white;">Makeshift technic</h1>
+            <p style="font-size: 18px; color: white;"><i>~Brought to you by Very Smoll Productions~</i></p>
             <button id="btn" onclick="document.getElementById('scrollHere').scrollIntoView({block:'start',inline:'nearest',behavior:'smooth'});">Learn More</button>
         </header>
         <div id="scrollHere" class="grid" style="background-color: #f1f1f1; width: 100%;">
-            <div style="margin-left: auto; margin-right: auto; float: left; width: 100%; max-width: 980px;">
+            <div style="margin-left: auto; margin-right: auto; float: left; max-width: 50vw;">
                 <div style="padding-left: 32px;">
                     <h1>What does it do?</h1>
                     <h5 style="padding-top: 32px; padding-bottom: 32px;">
@@ -42,9 +42,10 @@
                     <p class="text-grey">On every launch/ longer periods of inactivity, a modpack list is loaded. This list is then checked against user's installed mods. If a match is found, the app will pull the modpack's (mt) configuration file. This file contains several options, documented in the API section. But the gist of it, is that all mods have a server and client side sha256 checksum, which changes with the file. So when a client side checksum does not match the one on the server, you know it's a different one</p>
                 </div>
             </div>
+            <i class="fas fa-info-circle grid-icon" style="float: right; left: 75%;"></i>
         </div>
         <div class="grid" style="width: 100%;">
-            <div style="margin-left: auto; margin-right: auto; float: right; width: 100%; max-width: 980px;">
+            <div style="margin-left: auto; margin-right: auto; float: right; width: 100%; max-width: 50vw;">
                 <div style="padding-right: 32px;">
                     <h1>Why did you do this?</h1>
                     <h5 style="padding-top: 32px; padding-bottom: 32px;">
@@ -56,6 +57,7 @@
                     </p>
                 </div>
             </div>
+            <i class="fas fa-question-circle grid-icon" style="left: 25%;"></i>
         </div>
         <footer style="padding-top: 64px; padding-bottom: 64px;" class="footer">  
             <div style="padding-top: 32px; padding-bottom: 32px; font-size:24px;">
