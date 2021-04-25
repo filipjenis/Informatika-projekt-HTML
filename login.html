@@ -58,12 +58,11 @@
                 e.preventDefault()
                 name = document.getElementById("name").value
                 password = document.getElementById("password").value
-                /*const url = `http://mkt.myddns.me/shared/MKTechnic-website/adminLogin.php?name=${name}&password=${password}`
+                const url = `http://mkt.myddns.me/shared/MKTechnic-website/adminLogin.php?name=${name}&password=${password}`
                 var xmlHttp = new XMLHttpRequest()
                 xmlHttp.open("GET",url,false)
                 xmlHttp.send(null)
-                response = xmlHttp.responseText*/
-                response = "0"
+                response = xmlHttp.responseText
                 console.log(response)
                 if (response === "0"){
                     console.log("here")
