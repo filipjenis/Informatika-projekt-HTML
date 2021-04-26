@@ -41,7 +41,13 @@
                 <button style="margin-top: 22px; background-color: hsl(207, 100%, 57%);" class="btn" type="submit">Submit ❯</button><br>&nbsp;
             </form>
         </div>
-        <footer style="padding-top: 64px; padding-bottom: 64px;" class="footer">  
+        <footer style="padding-top: 64px; padding-bottom: 64px;" class="footer">
+            <div class="dropdown">
+                <button type="button" class="getMe" id="btn"><i class="fas fa-globe-europe"></i> English</button>
+                <div class="dropdown-content" id="languageDropdown">
+                    <a href="#">Slovak</a>
+                </div>
+            </div>
             <div style="padding-top: 32px; padding-bottom: 32px; font-size:24px;">
                 <a href="https://www.facebook.com/" target="_blank"><i class="fab fa-facebook hover-opacity"></i></a>
                 <a href="https://www.instagram.com/" target="_blank"><i class="fab fa-instagram hover-opacity"></i></a>
@@ -54,7 +60,15 @@
             <br>
         </footer>
         <script>
-            document.getElementById("submitForm").addEventListener("submit",e=>{
+                function resizeDropdown(){
+                    var button = document.getElementsByClassName("getMe")[0]
+                    var buttonStyle = window.getComputedStyle(button).getPropertyValue("width")
+                    var dropdown = document.getElementById("languageDropdown")
+                    dropdown.style.minWidth = buttonStyle;
+                }
+                window.addEventListener('load', resizeDropdown)
+                window.addEventListener('resize', resizeDropdown)
+                document.getElementById("submitForm").addEventListener("submit",e=>{
                 e.preventDefault()
                 name = document.getElementById("name").value
                 password = document.getElementById("password").value

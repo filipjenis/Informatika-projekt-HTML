@@ -57,6 +57,12 @@
         
         </div>
         <footer class="footer">
+            <div class="dropdown">
+                <button type="button" class="getMe" id="btn"><i class="fas fa-globe-europe"></i> English</button>
+                <div class="dropdown-content" id="languageDropdown">
+                    <a href="#">Slovak</a>
+                </div>
+            </div>
             <div style="padding-top: 32px; padding-bottom: 32px; font-size:24px">
                 <a href="https://www.facebook.com/" target="_blank"><i class="fab fa-facebook hover-opacity"></i></a>
                 <a href="https://www.instagram.com/" target="_blank"><i class="fab fa-instagram hover-opacity"></i></a>
@@ -69,6 +75,14 @@
             <br> 
         </footer>
         <script>
+            function resizeDropdown(){
+                var button = document.getElementsByClassName("getMe")[0]
+                var buttonStyle = window.getComputedStyle(button).getPropertyValue("width")
+                var dropdown = document.getElementById("languageDropdown")
+                dropdown.style.minWidth = buttonStyle;
+            }
+            window.addEventListener('load', resizeDropdown)
+            window.addEventListener('resize', resizeDropdown)
             document.getElementById("submitForm").addEventListener("submit",e=>{
                 e.preventDefault()
                 email = document.getElementById("email").value
