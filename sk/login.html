@@ -27,18 +27,18 @@
             <a href="login.html" class="navbar-item" style="float:right;background-color: hsl(207, 88%, 59%);">Prihlásenie pre administrátorov</a>
         </div>
         <header class="header" style="padding:128px 0px 128px 0px; background-image: url(../img/login-header.png);">
-            <h1 style="margin: 16px; font-size: 64px; color: white;">Log in to the admin panel</h1>
+            <h1 style="margin: 16px; font-size: 64px; color: white;">Prihlásenie do admin panelu</h1>
         </header>
         <div class="grid" id="grid" style="background-color: #f1f1f1; width: 100%;">
             <form class="form" style="background-color: white; max-width: 50vw; transform: translate(-50%,0%); margin-left: 50%;" id="submitForm">
                 &nbsp;<br>
-                <label class="text-grey">Username</label>
+                <label class="text-grey">Prihlasovacie meno</label>
                 <input class="inp" id="name" type="text">
                 <br>
-                <label class="text-grey">Password</label>
+                <label class="text-grey">Heslo</label>
                 <input class="inp" id="password" type="password">
                 <h6 style="text-align: center; color: red;" id="failed-txt"></h6>
-                <button style="margin-top: 22px; background-color: hsl(207, 100%, 57%);" class="btn" type="submit">Submit ❯</button><br>&nbsp;
+                <button style="margin-top: 22px; background-color: hsl(207, 100%, 57%);" class="btn" type="submit">Prihlásiť sa ❯</button><br>&nbsp;
             </form>
         </div>
         <footer style="padding-top: 64px; padding-bottom: 64px;" class="footer">
@@ -82,7 +82,7 @@
                     console.log("here")
                     document.getElementById("name").style = "border-bottom: 1px solid red;"
                     document.getElementById("password").style = "border-bottom: 1px solid red;"
-                    document.getElementById("failed-txt").innerHTML = "Name or password is invalid"
+                    document.getElementById("failed-txt").innerHTML = "Prihlasovacie meno alebo heslo je nesprávne"
                     document.getElementById("grid").innerHTML += `<br><img src="img/hugo.png" style="display: block; margin-left: auto; margin-right: auto;">`
                     document.getElementById("name").value = name
                     document.getElementById("password").value = password
