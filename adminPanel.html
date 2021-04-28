@@ -11,15 +11,84 @@
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+        <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
         
         <style>
             body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif; font-weight:400; margin:10px 0}
             h1{font-size:36px}h2{font-size:30px}h3{font-size:24px}h4{font-size:20px}h5{font-size:18px}h6{font-size:16px}
             h1,button {font-family: "Montserrat", sans-serif}
         </style>
+        
     </head>
     <body>
-        <h1>Site under development</h1>
-        This site is currently under development and will available in the final version.
+        <div class="navbar">
+            <a href="index.html" class="navbar-item">Home</a>
+            <a href="download.html" class="navbar-item">Download</a>
+            <a href="contact.html" class="navbar-item">Contact us</a>
+            <a href="login.html" class="navbar-item" style="float:right;background-color: hsl(207, 88%, 59%);">Admin Login</a>
+        </div>
+        <header class="header" style="padding:128px 0px 128px 0px; background-image: url(img/login-header.png);">
+            <h1 style="margin: 16px; font-size: 64px; color: white;">Welcome to the admin panel</h1>
+        </header>
+        <div class="grid" id="grid" style="background-color: #f1f1f1; width: 100%;">
+            <input type="text" placeholder="Search" id="search_querry" class="inp" onkeyup="search()">
+            <table id="main_table" class="w3-table w3-bordered w3-striped w3-border test w3-hoverable">
+
+            </table>
+        </div>
+        <footer style="padding-top: 64px; padding-bottom: 64px;" class="footer">  
+            <div style="padding-top: 32px; padding-bottom: 32px; font-size:24px;">
+                <a href="https://www.facebook.com/" target="_blank"><i class="fab fa-facebook hover-opacity"></i></a>
+                <a href="https://www.instagram.com/" target="_blank"><i class="fab fa-instagram hover-opacity"></i></a>
+                <a href="https://twitter.com/" target="_blank"><i class="fab fa-twitter hover-opacity"></i></a>
+                <a href="https://discord.com/" target="_blank"><i class="fab fa-discord hover-opacity"></i></a>
+                <a href="https://github.com/filipjenis/Informatika-projekt-HTML" target="_blank"><i class="fab fa-github hover-opacity"></i></a>
+            </div>
+            Created by<br>
+            Hugo Bohácsek & Filip Jenis
+            <br>
+        </footer>
+        <script>
+            var credentials = JSON.parse(localStorage["userData"])
+            function search() {
+                var input, filter, table, tr, td, i;
+                input = document.getElementById("search_querry");
+                filter = input.value.toUpperCase();
+                table = document.getElementById("main_table");
+                tr = table.getElementsByTagName("tr");
+                for (i = 1; i < tr.length; i++) {
+                    td = tr[i].getElementsByTagName("td")[0];
+                    if (td) {
+                        txtValue = td.textContent || td.innerText;
+                        if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                            tr[i].style.display = "";
+                        } else {
+                            tr[i].style.display = "none";
+                        }
+                    }
+                }
+            }
+            window.addEventListener("load", e=>{
+               var url = `http://mkt.myddns.me/shared/MKTechnic-website/getTickets.php?name=${credentials["name"]}&password=${credentials["password"]}&id=${credentials["id"]}` 
+               var xmlHttp = new XMLHttpRequest()
+                xmlHttp.open("GET",url,false)
+                xmlHttp.send(null)
+                response = xmlHttp.responseText
+                if (response === "0"){
+                    response = null
+                }else{
+                    console.log(response)
+                    response = JSON.parse(response)
+                }
+                renderTable()
+            })
+            function renderTable(){
+                // pass
+
+
+
+            }
+        </script>
     </body>
 </html>
