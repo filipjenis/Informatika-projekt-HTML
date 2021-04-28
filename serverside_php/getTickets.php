@@ -18,7 +18,7 @@
     if (is_null($row)){
         echo 0;
     }else{
-        $querry = "SELECT * FROM `mkt_contact_tickets`";
+        $query = "SELECT * FROM `mkt_contact_tickets`";
         $result = $db->query($query);
         $output = array();
         while($row = mysqli_fetch_array($result)){
