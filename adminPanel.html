@@ -32,7 +32,8 @@
             <h1 style="margin: 16px; font-size: 64px; color: white;">Welcome to the admin panel</h1>
         </header>
         <div class="grid" id="grid" style="background-color: #f1f1f1; width: 100%;">
-            <input type="text" placeholder="Search" id="search_querry" class="inp" onkeyup="search()">
+            <input type="text" placeholder="Search by text" id="search_querry" class="inp" onkeyup="search()">
+            <br>
             <table id="main_table" class="w3-table w3-bordered w3-striped w3-border test w3-hoverable">
 
             </table>
@@ -58,7 +59,7 @@
                 table = document.getElementById("main_table");
                 tr = table.getElementsByTagName("tr");
                 for (i = 1; i < tr.length; i++) {
-                    td = tr[i].getElementsByTagName("td")[0];
+                    td = tr[i].getElementsByTagName("td")[2];
                     if (td) {
                         txtValue = td.textContent || td.innerText;
                         if (txtValue.toUpperCase().indexOf(filter) > -1) {
@@ -84,10 +85,23 @@
                 renderTable()
             })
             function renderTable(){
-                // pass
-
-
-
+                var mainTable = document.getElementById("main_table")
+                mainTable.innerHTML = ""
+                mainTable.innerHTML += '<thead><tr class="blue"><th>Case id</th><th>Email</th><th>Text</th><th>Timestamp</th><th>Status</th><th>Actions</th></tr></thead>'
+                response.forEach(ticket=>{
+                    mainTable.innerHTML += `<tr><td>${ticket.id}</td><td>${ticket.email}</td><td>${ticket.text}</td><td>${ticket.timestamp}</td><td>${(ticket.resolved==="0")?"Unresolved":"Resolved"}</td><td><button onclick='reply(${JSON.stringify(ticket)})'>Reply</button>&nbsp&nbsp<button onclick='resolve(${ticket.id})'>Mark as resolved</button></td></tr>`
+                })
+            }
+            function reply(ticket){
+                window.open(`mailto:${ticket.email}?subject=New reply regarding ticket #${ticket.id}&body=>${ticket.text}`,"_blank").focus()
+            }
+            function resolve(id){
+                var url = `http://mkt.myddns.me/shared/MKTechnic-website/resolve.php?name=${credentials["name"]}&password=${credentials["password"]}&id=${credentials["id"]}&resolveId=${id}` 
+               var xmlHttp = new XMLHttpRequest()
+                xmlHttp.open("GET",url,false)
+                xmlHttp.send(null)
+                response = xmlHttp.responseText
+                location.reload()
             }
         </script>
     </body>

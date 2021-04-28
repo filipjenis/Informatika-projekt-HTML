@@ -209,3 +209,7 @@ header h1{
     50% { background-color: #fbf8b2; }
     100% { background-color: transparent; }
 }
+.blue {
+    background-color: hsl(207, 90%, 54%);
+    color:#fff;
+}
