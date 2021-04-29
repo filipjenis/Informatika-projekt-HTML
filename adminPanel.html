@@ -11,8 +11,6 @@
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
-        <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
         
         <style>
             body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif; font-weight:400; margin:10px 0}
@@ -32,9 +30,12 @@
             <h1 style="margin: 16px; font-size: 64px; color: white;">Welcome to the admin panel</h1>
         </header>
         <div class="grid" id="grid" style="background-color: #f1f1f1; width: 100%;">
-            <input type="text" placeholder="Search by text" id="search_querry" class="inp" onkeyup="search()">
+            <input type="text" placeholder="Search by text" id="search_querry" class="inp" style="width: 75vw; display: inline-block;" onkeyup="search()">
+            <button id="btn-all" onclick="">All</button>
+            <button id="btn-resolved" onclick="">Resolved</button>
+            <button id="btn-unresolved" onclick="">Unresolved</button>
             <br>
-            <table id="main_table" class="w3-table w3-bordered w3-striped w3-border test w3-hoverable">
+            <table id="main_table" class="table">
 
             </table>
         </div>
@@ -89,7 +90,7 @@
                 mainTable.innerHTML = ""
                 mainTable.innerHTML += '<thead><tr class="blue"><th>Case id</th><th>Email</th><th>Text</th><th>Timestamp</th><th>Status</th><th>Actions</th></tr></thead>'
                 response.forEach(ticket=>{
-                    mainTable.innerHTML += `<tr><td>${ticket.id}</td><td>${ticket.email}</td><td>${ticket.text}</td><td>${ticket.timestamp}</td><td>${(ticket.resolved==="0")?"Unresolved":"Resolved"}</td><td><button onclick='reply(${JSON.stringify(ticket)})'>Reply</button>&nbsp&nbsp<button onclick='resolve(${ticket.id})'>Mark as resolved</button></td></tr>`
+                    mainTable.innerHTML += `<tr class=${(ticket.resolved==="0")?"unresolved":"resolved"}><td>${ticket.id}</td><td>${ticket.email}</td><td>${ticket.text}</td><td>${ticket.timestamp}</td><td>${(ticket.resolved==="0")?"Unresolved":"Resolved"}</td><td><button onclick='reply(${JSON.stringify(ticket)})'>Reply</button>&nbsp&nbsp<button onclick='resolve(${ticket.id})'>Mark as resolved</button></td></tr>`
                 })
             }
             function reply(ticket){
