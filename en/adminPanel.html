@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>MKTechnic</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="../style.css">
+        <link rel="icon" type="image/x-icon" href="../favicon.ico">
+        <script src="https://kit.fontawesome.com/587277cc2a.js" crossorigin="anonymous"></script>
+
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        
+        <style>
+            body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif; font-weight:400; margin:10px 0}
+            h1{font-size:36px}h2{font-size:30px}h3{font-size:24px}h4{font-size:20px}h5{font-size:18px}h6{font-size:16px}
+            h1,button {font-family: "Montserrat", sans-serif}
+        </style>
+        
+    </head>
+    <body>
+        <div class="navbar">
+            <a href="index.html" class="navbar-item">Home</a>
+            <a href="download.html" class="navbar-item">Download</a>
+            <a href="contact.html" class="navbar-item">Contact us</a>
+            <a href="login.html" class="navbar-item" style="float:right;background-color: hsl(207, 88%, 59%);">Admin Login</a>
+        </div>
+        <header class="header" style="padding:128px 0px 128px 0px; background-image: url(../img/login-header.png);">
+            <h1 style="margin: 16px; font-size: 64px; color: white;">Welcome to the admin panel</h1>
+        </header>
+        <div class="grid" id="grid" style="background-color: #f1f1f1; width: 100%;">
+            <input type="text" placeholder="Search by text" id="search_querry" class="inp" style="width: 75vw; display: inline-block;" onkeyup="search()">
+            <button id="btn-all" onclick="filterSelection('all')">All</button>
+            <button id="btn-resolved" onclick="filterSelection('resolved')">Resolved</button>
+            <button id="btn-unresolved" onclick="filterSelection('unresolved')">Unresolved</button>
+            <br>
+            <table id="main_table" class="table">
+
+            </table>
+        </div>
+        <footer style="padding-top: 64px; padding-bottom: 64px;" class="footer">
+            <div class="dropdown">
+                <button type="button" class="getMe" id="btn"><i class="fas fa-globe-europe"></i> English</button>
+                <div class="dropdown-content" id="languageDropdown">
+                    <a href="../sk/adminPanel.html">Slovensky</a>
+                </div>
+            </div>
+            <div style="padding-top: 32px; padding-bottom: 32px; font-size:24px;">
+                <a href="https://www.facebook.com/" target="_blank"><i class="fab fa-facebook hover-opacity"></i></a>
+                <a href="https://www.instagram.com/" target="_blank"><i class="fab fa-instagram hover-opacity"></i></a>
+                <a href="https://twitter.com/" target="_blank"><i class="fab fa-twitter hover-opacity"></i></a>
+                <a href="https://discord.com/" target="_blank"><i class="fab fa-discord hover-opacity"></i></a>
+                <a href="https://github.com/filipjenis/Informatika-projekt-HTML" target="_blank"><i class="fab fa-github hover-opacity"></i></a>
+            </div>
+            Created by<br>
+            Hugo Bohácsek & Filip Jenis
+            <br>
+        </footer>
+        <script>
+            function resizeDropdown(){
+                var button = document.getElementsByClassName("getMe")[0]
+                var buttonStyle = window.getComputedStyle(button).getPropertyValue("width")
+                var dropdown = document.getElementById("languageDropdown")
+                dropdown.style.minWidth = buttonStyle;
+            }
+            window.addEventListener('load', resizeDropdown)
+            window.addEventListener('resize', resizeDropdown)
+            var credentials = JSON.parse(localStorage["userData"])
+            function search() {
+                var input, filter, table, tr, td, i;
+                input = document.getElementById("search_querry");
+                filter = input.value.toUpperCase();
+                table = document.getElementById("main_table");
+                tr = table.getElementsByTagName("tr");
+                for (i = 1; i < tr.length; i++) {
+                    td = tr[i].getElementsByTagName("td")[2];
+                    if (td) {
+                        txtValue = td.textContent || td.innerText;
+                        if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                            tr[i].style.display = "";
+                        } else {
+                            tr[i].style.display = "none";
+                        }
+                    }
+                }
+            }
+            window.addEventListener("load", e=>{
+               var url = `http://mkt.myddns.me/shared/MKTechnic-website/getTickets.php?name=${credentials["name"]}&password=${credentials["password"]}&id=${credentials["id"]}` 
+               var xmlHttp = new XMLHttpRequest()
+                xmlHttp.open("GET",url,false)
+                xmlHttp.send(null)
+                response = xmlHttp.responseText
+                if (response === "0"){
+                    response = null
+                }else{
+                    console.log(response)
+                    response = JSON.parse(response)
+                }
+                renderTable()
+            })
+            function renderTable(){
+                var mainTable = document.getElementById("main_table")
+                mainTable.innerHTML = ""
+                mainTable.innerHTML += '<thead><tr class="blue"><th>Case id</th><th>Email</th><th>Text</th><th>Timestamp</th><th>Status</th><th>Actions</th></tr></thead>'
+                response.forEach(ticket=>{
+                    mainTable.innerHTML += `<tr class=${(ticket.resolved==="0")?"unresolved":"resolved"}><td>${ticket.id}</td><td>${ticket.email}</td><td>${ticket.text}</td><td>${ticket.timestamp}</td><td>${(ticket.resolved==="0")?"Unresolved":"Resolved"}</td><td><button onclick='reply(${JSON.stringify(ticket)})'>Reply</button>&nbsp&nbsp<button onclick='resolve(${ticket.id})'>Mark as resolved</button></td></tr>`
+                })
+            }
+            function reply(ticket){
+                window.open(`mailto:${ticket.email}?subject=New reply regarding ticket #${ticket.id}&body=>${ticket.text}`,"_blank").focus()
+            }
+            function resolve(id){
+                var url = `http://mkt.myddns.me/shared/MKTechnic-website/resolve.php?name=${credentials["name"]}&password=${credentials["password"]}&id=${credentials["id"]}&resolveId=${id}` 
+               var xmlHttp = new XMLHttpRequest()
+                xmlHttp.open("GET",url,false)
+                xmlHttp.send(null)
+                response = xmlHttp.responseText
+                location.reload()
+            }
+            function filterSelection(filter){
+                //pass
+            }
+        </script>
+        <script src="../scripts/session.js"></script>
+    </body>
+</html>

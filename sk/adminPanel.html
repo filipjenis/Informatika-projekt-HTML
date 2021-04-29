@@ -4,8 +4,8 @@
         <title>MKTechnic</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="style.css">
-        <link rel="icon" type="image/x-icon" href="favicon.ico">
+        <link rel="stylesheet" href="../style.css">
+        <link rel="icon" type="image/x-icon" href="../favicon.ico">
         <script src="https://kit.fontawesome.com/587277cc2a.js" crossorigin="anonymous"></script>
 
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
@@ -21,25 +21,31 @@
     </head>
     <body>
         <div class="navbar">
-            <a href="index.html" class="navbar-item">Home</a>
-            <a href="download.html" class="navbar-item">Download</a>
-            <a href="contact.html" class="navbar-item">Contact us</a>
-            <a href="login.html" class="navbar-item" style="float:right;background-color: hsl(207, 88%, 59%);">Admin Login</a>
+            <a href="index.html" class="navbar-item">Hlavná stránka</a>
+            <a href="download.html" class="navbar-item">Stiahnutie</a>
+            <a href="contact.html" class="navbar-item">Kontaktujte nás</a>
+            <a href="login.html" class="navbar-item" style="float:right;background-color: hsl(207, 88%, 59%);">Prihlásenie pre administrátorov</a>
         </div>
-        <header class="header" style="padding:128px 0px 128px 0px; background-image: url(img/login-header.png);">
-            <h1 style="margin: 16px; font-size: 64px; color: white;">Welcome to the admin panel</h1>
+        <header class="header" style="padding:128px 0px 128px 0px; background-image: url(../img/login-header.png);">
+            <h1 style="margin: 16px; font-size: 64px; color: white;">Vitajte v admin paneli</h1>
         </header>
         <div class="grid" id="grid" style="background-color: #f1f1f1; width: 100%;">
             <input type="text" placeholder="Search by text" id="search_querry" class="inp" style="width: 75vw; display: inline-block;" onkeyup="search()">
-            <button id="btn-all" onclick="filterSelection('all')">All</button>
-            <button id="btn-resolved" onclick="filterSelection('resolved')">Resolved</button>
-            <button id="btn-unresolved" onclick="filterSelection('unresolved')">Unresolved</button>
+            <button id="btn-all" onclick="filterSelection('all')">Všetky</button>
+            <button id="btn-resolved" onclick="filterSelection('resolved')">Vyriešené</button>
+            <button id="btn-unresolved" onclick="filterSelection('unresolved')">Nevyriešené</button>
             <br>
             <table id="main_table" class="table">
 
             </table>
         </div>
-        <footer style="padding-top: 64px; padding-bottom: 64px;" class="footer">  
+        <footer style="padding-top: 64px; padding-bottom: 64px;" class="footer">
+            <div class="dropdown">
+                <button type="button" class="getMe" id="btn"><i class="fas fa-globe-europe"></i> Slovensky</button>
+                <div class="dropdown-content" id="languageDropdown">
+                    <a href="../en/adminPanel.html">English</a>
+                </div>
+            </div>
             <div style="padding-top: 32px; padding-bottom: 32px; font-size:24px;">
                 <a href="https://www.facebook.com/" target="_blank"><i class="fab fa-facebook hover-opacity"></i></a>
                 <a href="https://www.instagram.com/" target="_blank"><i class="fab fa-instagram hover-opacity"></i></a>
@@ -47,11 +53,19 @@
                 <a href="https://discord.com/" target="_blank"><i class="fab fa-discord hover-opacity"></i></a>
                 <a href="https://github.com/filipjenis/Informatika-projekt-HTML" target="_blank"><i class="fab fa-github hover-opacity"></i></a>
             </div>
-            Created by<br>
+            Vytvorili<br>
             Hugo Bohácsek & Filip Jenis
             <br>
         </footer>
         <script>
+            function resizeDropdown(){
+                var button = document.getElementsByClassName("getMe")[0]
+                var buttonStyle = window.getComputedStyle(button).getPropertyValue("width")
+                var dropdown = document.getElementById("languageDropdown")
+                dropdown.style.minWidth = buttonStyle;
+            }
+            window.addEventListener('load', resizeDropdown)
+            window.addEventListener('resize', resizeDropdown)
             var credentials = JSON.parse(localStorage["userData"])
             function search() {
                 var input, filter, table, tr, td, i;
@@ -88,7 +102,7 @@
             function renderTable(){
                 var mainTable = document.getElementById("main_table")
                 mainTable.innerHTML = ""
-                mainTable.innerHTML += '<thead><tr class="blue"><th>Case id</th><th>Email</th><th>Text</th><th>Timestamp</th><th>Status</th><th>Actions</th></tr></thead>'
+                mainTable.innerHTML += '<thead><tr class="blue"><th>ID prípadu</th><th>Email</th><th>Text</th><th>Čas odoslania</th><th>Status</th><th>Možnosti</th></tr></thead>'
                 response.forEach(ticket=>{
                     mainTable.innerHTML += `<tr class=${(ticket.resolved==="0")?"unresolved":"resolved"}><td>${ticket.id}</td><td>${ticket.email}</td><td>${ticket.text}</td><td>${ticket.timestamp}</td><td>${(ticket.resolved==="0")?"Unresolved":"Resolved"}</td><td><button onclick='reply(${JSON.stringify(ticket)})'>Reply</button>&nbsp&nbsp<button onclick='resolve(${ticket.id})'>Mark as resolved</button></td></tr>`
                 })
@@ -108,6 +122,6 @@
                 //pass
             }
         </script>
-        <script src="scripts/session.js"></script>
+        <script src="../scripts/session.js"></script>
     </body>
 </html>
