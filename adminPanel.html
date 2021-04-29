@@ -31,9 +31,9 @@
         </header>
         <div class="grid" id="grid" style="background-color: #f1f1f1; width: 100%;">
             <input type="text" placeholder="Search by text" id="search_querry" class="inp" style="width: 75vw; display: inline-block;" onkeyup="search()">
-            <button id="btn-all" onclick="">All</button>
-            <button id="btn-resolved" onclick="">Resolved</button>
-            <button id="btn-unresolved" onclick="">Unresolved</button>
+            <button id="btn-all" onclick="filterSelection('all')">All</button>
+            <button id="btn-resolved" onclick="filterSelection('resolved')">Resolved</button>
+            <button id="btn-unresolved" onclick="filterSelection('unresolved')">Unresolved</button>
             <br>
             <table id="main_table" class="table">
 
@@ -103,6 +103,9 @@
                 xmlHttp.send(null)
                 response = xmlHttp.responseText
                 location.reload()
+            }
+            function filterSelection(filter){
+                //pass
             }
         </script>
         <script src="scripts/session.js"></script>
