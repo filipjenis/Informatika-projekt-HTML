@@ -1,2 +1,72 @@
 Projekt-INF-tvorba stránky
 Filip Jenis, Hugo Bohácsek - sexta B - skupina ib1
+
+Čo všetko ste spravili, čo sa vám z vášho plánu podarilo a čo, naopak, nepodarilo a ak sa nepodarilo, čo bolo toho dôvodom?
+
+-podarilo sa:
+    -mať funkčnú webstránku :)
+    -z priebežného plánu sa nám podarilo implementovať všetky body okrem bodu "v download.html po vybraní platformy vypýtať "secret key" (kľúč vygenerovaný adminmi) a až potom pustiť ku sťahovaniu"
+    -podarilo sa nám použiť niekoľko techník nad rámec preberaného učiva
+    -podarilo sa nám vytvoriť ticketový kontaktný systém
+        -kontaktný formulár v contact.html je cez PHP script napjený na našu databázu contact ticketov (MariaDB)
+    -podarilo sa nám vytvoriť prihlasovací systém pre administrátorov
+        -prihlasovací formulár v login.html overuje prihlasovacie údaje cez PHP script s databázou používateľov (MariaDB)
+    -podarilo sa nám vytvoriť adminPanel s graficky zrozumiteľným zobrazovaním contact ticketov
+        -načítavanie ticketov opäť cez PHP script z databázy ticketov (MariaDB)
+    -podarilo sa nám nakonfigurovať databázu na Hugovom Raspberry Pi, aj NGINX server, ktorý hostuje php skripty
+    -podarilo sa nám vytvoriť bilingválnu webstránku (slovenskú, ale aj anglickú verziu)
+        -prepínanie jazykov sa nachádza vo footeri
+
+-nepodarilo sa:
+    -neimplementovali sme bod "v download.html po vybraní platformy vypýtať "secret key" (kľúč vygenerovaný adminmi) a až potom pustiť ku sťahovaniu"
+        -bod sme neimplementovali z niekoľkých dôvodov:
+            1. Táto časť nie je potrebná, nakoľko kontrola bude prebiehať v samotnej aplikácii Makeshift Technic (stránka je o reálnom budúcom projekte)
+            2. Aj keby kontrola cez stránku nebola duplicitná, časová tieseň by nás ovplyvnila a naše riešenie by nebolo na 100% podľa našich predstáv
+
+
+S akými problémami ste sa postretli, ako ste ich vyriešili?
+
+    - Hugo nevie napísať quary, a opravoval to dva dni (ďakujem za pomoc Filipko ♥) - jednalo sa len o preklep v commande
+    - Už tradične bol problém s CSS a centrovaním, ale to sa po 'chvíli' vyriešilo jeho úpravou
+    - Button na filtrovanie ticketov v adminPanel.html mal viac problémov s CSS - vyriešené nastavením fixnej šírky, dĺžky, pridaním vlastnej class do style.css
+
+
+Kto z tímu sa staral o akú časť stránky?
+
+            Obsah
+
+Hugo    - anglický text
+Filip   - slovenský text (preklad)
+
+
+            Jednotlivé súbory (približne/ robil väčšiu časť)
+
+Filip   - index.html, login.html, adminPanel.html (filtrovanie)
+Hugo    - download.html, contact.html, adminPanel.html
+
+Hugo    - CSS pre download.html, adminPanel.html, contact.html
+Filip   - CSS pre index.html, login.html, contact.html
+
+Filip   - createTicket.php, oprava getTickets.php
+Hugo    - adminLogin.php, getTickets.php, resolve.php
+
+Hugo    - session.js, parser.js
+Filip   - testovanie a reportovanie bugov v parser.js
+
+
+            Menšie časti (časť HTML/ CSS/ JS)
+
+Filip   - filtrovanie ticketov v adminPanel.html, prepínanie jazykov vo všetkých HTML súboroch, odosielanie ticketov z contact.html na server
+Hugo    - detekovanie systému v download.html, automatické resizovanie buttonov
+
+
+Na čo ste z vašej práce najviac hrdí?
+
+    - markdown regex parser (don't steal without permission :))
+    - napojenie na databázu/ server (aj jeho nastavovanie)
+    - prepínanie jazykov
+    - vymyslenie bezpečnosti adminPanel.html
+    - použitie siedmich jazykov (HTML, CSS, js, php, SQL, regex, markdown)
+
+
+~~~Very Smoll Productions~~~
