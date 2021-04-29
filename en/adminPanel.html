@@ -24,7 +24,7 @@
             <a href="index.html" class="navbar-item">Home</a>
             <a href="download.html" class="navbar-item">Download</a>
             <a href="contact.html" class="navbar-item">Contact us</a>
-            <a href="login.html" class="navbar-item" style="float:right;background-color: hsl(207, 88%, 59%);">Admin Login</a>
+            <a href="index.html" id="logOut" class="navbar-item" style="float:right;background-color: hsl(207, 88%, 59%);">Log out</a>
         </div>
         <header class="header" style="padding:128px 0px 128px 0px; background-image: url(../img/login-header.png);">
             <h1 style="margin: 16px; font-size: 64px; color: white;">Welcome to the admin panel</h1>
@@ -124,6 +124,9 @@
             function filterSelection(filter){
                 //pass
             }
+            document.getElementById("logOut").addEventListener("click",e=>{
+                localStorage.clear()
+            })
         </script>
         <script src="../scripts/session.js"></script>
         <script src="../scripts/parser.js"></script>
