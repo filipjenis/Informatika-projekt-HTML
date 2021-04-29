@@ -75,7 +75,11 @@
             }
             window.addEventListener('load', resizeDropdown)
             window.addEventListener('resize', resizeDropdown)
-            var credentials = JSON.parse(localStorage["userData"])
+            try {
+                var credentials = JSON.parse(localStorage["userData"])    
+            } catch (SyntaxError) {
+                location.href = "login.html"
+            }
             function search() {
                 var input, filter, table, tr, td, i;
                 input = document.getElementById("search_querry");
@@ -103,7 +107,6 @@
                 if (response === "0"){
                     response = null
                 }else{
-                    console.log(response)
                     response = JSON.parse(response)
                 }
                 renderTable()
@@ -113,7 +116,7 @@
                 mainTable.innerHTML = ""
                 mainTable.innerHTML += '<thead><tr class="blue"><th>Case id</th><th>Email</th><th>Text</th><th>Timestamp</th><th>Status</th><th>Actions</th></tr></thead>'
                 response.forEach(ticket=>{
-                    mainTable.innerHTML += `<tr class=${(ticket.resolved==="0")?"unresolved":"resolved"}><td>${ticket.id}</td><td>${ticket.email}</td><td>${ticket.text}</td><td>${ticket.timestamp}</td><td>${(ticket.resolved==="0")?"Unresolved":"Resolved"}</td><td><button onclick='reply(${JSON.stringify(ticket)})'>Reply</button>&nbsp&nbsp<button ${(ticket.resolved==="0")?"":"disabled"} onclick='resolve(${ticket.id})'>Mark as resolved</button></td></tr>`
+                    mainTable.innerHTML += `<tr class=${(ticket.resolved==="0")?"unresolved":"resolved"}><td>${ticket.id}</td><td>${ticket.email}</td><td>${parseMarkdown(ticket.text)}</td><td>${ticket.timestamp}</td><td>${(ticket.resolved==="0")?"Unresolved":"Resolved"}</td><td><button onclick='reply(${JSON.stringify(ticket)})'>Reply</button>&nbsp&nbsp<button ${(ticket.resolved==="0")?"":"disabled"} onclick='resolve(${ticket.id})'>Mark as resolved</button></td></tr>`
                 })
             }
             function reply(ticket){
@@ -164,5 +167,6 @@
             }
         </script>
         <script src="../scripts/session.js"></script>
+        <script src="../scripts/parser.js"></script>
     </body>
 </html>

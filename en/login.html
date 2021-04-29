@@ -77,9 +77,7 @@
                 xmlHttp.open("GET",url,false)
                 xmlHttp.send(null)
                 response = xmlHttp.responseText
-                console.log(response)
                 if (response === "0"){
-                    console.log("here")
                     document.getElementById("name").style = "border-bottom: 1px solid red;"
                     document.getElementById("password").style = "border-bottom: 1px solid red;"
                     document.getElementById("failed-txt").innerHTML = "Name or password is invalid"
@@ -88,6 +86,7 @@
                     document.getElementById("password").value = password
                 }else{
                     localStorage["userData"] = response
+                    localStorage["timestamp"] = Math.floor(Date.now() / 1000)
                     location.href = "adminPanel.html"
                 }
             })
