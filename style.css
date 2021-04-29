@@ -238,3 +238,13 @@ header h1{
 .table tbody tr:hover{
     background-color: #ccc;
 }
+#show-btn{
+    width: 9vw;
+    padding: 0;
+    background-color: white;
+    border: none;
+    height: 32px;
+}
+#show-btn:hover{
+    background-color: lightgray;
+}
