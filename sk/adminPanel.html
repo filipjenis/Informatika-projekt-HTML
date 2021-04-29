@@ -66,7 +66,11 @@
             }
             window.addEventListener('load', resizeDropdown)
             window.addEventListener('resize', resizeDropdown)
-            var credentials = JSON.parse(localStorage["userData"])
+            try {
+                var credentials = JSON.parse(localStorage["userData"])    
+            } catch (SyntaxError) {
+                location.href = "login.html"
+            }
             function search() {
                 var input, filter, table, tr, td, i;
                 input = document.getElementById("search_querry");
@@ -94,7 +98,6 @@
                 if (response === "0"){
                     response = null
                 }else{
-                    console.log(response)
                     response = JSON.parse(response)
                 }
                 renderTable()
