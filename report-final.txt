@@ -69,4 +69,4 @@ Na čo ste z vašej práce najviac hrdí?
     - použitie siedmich jazykov (HTML, CSS, js, php, SQL, regex, markdown)
 
 
-~~~Very Smoll Productions~~~
+Tvoje prihlasovacie údaje do admin panelu: filipHusar:hesielko
