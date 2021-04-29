@@ -104,7 +104,7 @@
                 mainTable.innerHTML = ""
                 mainTable.innerHTML += '<thead><tr class="blue"><th>ID prípadu</th><th>Email</th><th>Text</th><th>Čas odoslania</th><th>Status</th><th>Možnosti</th></tr></thead>'
                 response.forEach(ticket=>{
-                    mainTable.innerHTML += `<tr class=${(ticket.resolved==="0")?"unresolved":"resolved"}><td>${ticket.id}</td><td>${ticket.email}</td><td>${ticket.text}</td><td>${ticket.timestamp}</td><td>${(ticket.resolved==="0")?"Unresolved":"Resolved"}</td><td><button onclick='reply(${JSON.stringify(ticket)})'>Reply</button>&nbsp&nbsp<button onclick='resolve(${ticket.id})'>Mark as resolved</button></td></tr>`
+                    mainTable.innerHTML += `<tr class=${(ticket.resolved==="0")?"unresolved":"resolved"}><td>${ticket.id}</td><td>${ticket.email}</td><td>${ticket.text}</td><td>${ticket.timestamp}</td><td>${(ticket.resolved==="0")?"Nevyriešené":"Vyriešené"}</td><td><button onclick='reply(${JSON.stringify(ticket)})'>Odpovedať</button>&nbsp&nbsp<button onclick='resolve(${ticket.id})'>Označiť za vyriešené</button></td></tr>`
                 })
             }
             function reply(ticket){
