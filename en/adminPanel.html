@@ -30,10 +30,15 @@
             <h1 style="margin: 16px; font-size: 64px; color: white;">Welcome to the admin panel</h1>
         </header>
         <div class="grid" id="grid" style="background-color: #f1f1f1; width: 100%;">
-            <input type="text" placeholder="Search by text" id="search_querry" class="inp" style="width: 75vw; display: inline-block;" onkeyup="search()">
-            <button id="btn-all" onclick="filterSelection('all')">All</button>
-            <button id="btn-resolved" onclick="filterSelection('resolved')">Resolved</button>
-            <button id="btn-unresolved" onclick="filterSelection('unresolved')">Unresolved</button>
+            <input type="text" placeholder="Search by text" id="search_querry" class="inp" style="width: 90vw; display: inline-block; padding-right: 0;" onkeyup="search()">
+            <div class="dropdown" style="margin-left: 0.1vw;">
+                <button id="show-btn">Show <i class="fas fa-sort-down"></i></button>
+                <div class="dropdown-content" id="filter-dropdown" style="text-align: center;">
+                    <a onclick="filterSelection('all')" id="all" style="background-color: darkgray;">All</a>
+                    <a onclick="filterSelection('resolved')" id="resolved">Resolved</a>
+                    <a onclick="filterSelection('unresolved')" id="unresolved">Unresolved</a>
+                </div>
+            </div>
             <br>
             <table id="main_table" class="table">
 
@@ -63,6 +68,10 @@
                 var buttonStyle = window.getComputedStyle(button).getPropertyValue("width")
                 var dropdown = document.getElementById("languageDropdown")
                 dropdown.style.minWidth = buttonStyle;
+                var show = document.getElementById("show-btn")
+                var showWidth = window.getComputedStyle(show).getPropertyValue("width")
+                var filterDropdown = document.getElementById("filter-dropdown")
+                filterDropdown.style.width = showWidth;
             }
             window.addEventListener('load', resizeDropdown)
             window.addEventListener('resize', resizeDropdown)
@@ -104,7 +113,7 @@
                 mainTable.innerHTML = ""
                 mainTable.innerHTML += '<thead><tr class="blue"><th>Case id</th><th>Email</th><th>Text</th><th>Timestamp</th><th>Status</th><th>Actions</th></tr></thead>'
                 response.forEach(ticket=>{
-                    mainTable.innerHTML += `<tr class=${(ticket.resolved==="0")?"unresolved":"resolved"}><td>${ticket.id}</td><td>${ticket.email}</td><td>${ticket.text}</td><td>${ticket.timestamp}</td><td>${(ticket.resolved==="0")?"Unresolved":"Resolved"}</td><td><button onclick='reply(${JSON.stringify(ticket)})'>Reply</button>&nbsp&nbsp<button onclick='resolve(${ticket.id})'>Mark as resolved</button></td></tr>`
+                    mainTable.innerHTML += `<tr class=${(ticket.resolved==="0")?"unresolved":"resolved"}><td>${ticket.id}</td><td>${ticket.email}</td><td>${ticket.text}</td><td>${ticket.timestamp}</td><td>${(ticket.resolved==="0")?"Unresolved":"Resolved"}</td><td><button onclick='reply(${JSON.stringify(ticket)})'>Reply</button>&nbsp&nbsp<button ${(ticket.resolved==="0")?"":"disabled"} onclick='resolve(${ticket.id})'>Mark as resolved</button></td></tr>`
                 })
             }
             function reply(ticket){
@@ -119,7 +128,39 @@
                 location.reload()
             }
             function filterSelection(filter){
-                //pass
+                resolved = document.getElementsByClassName("resolved")
+                unresolved = document.getElementsByClassName("unresolved")
+                if (filter=="all"){
+                    for(var i=0; i<resolved.length; i++){
+                        resolved[i].style.display = "table-row"
+                    }
+                    for(var i=0; i<unresolved.length; i++){
+                        unresolved[i].style.display = "table-row"
+                    }
+                    document.getElementById("all").style.backgroundColor = "DarkGray"
+                    document.getElementById("resolved").style.backgroundColor = "#f1f1f1"
+                    document.getElementById("unresolved").style.backgroundColor = "#f1f1f1"
+                }else if(filter=="resolved"){
+                    for(var i=0; i<resolved.length; i++){
+                        resolved[i].style.display = "table-row"
+                    }
+                    for(var i=0; i<unresolved.length; i++){
+                        unresolved[i].style.display = "none"
+                    }
+                    document.getElementById("all").style.backgroundColor = "#f1f1f1"
+                    document.getElementById("resolved").style.backgroundColor = "DarkGray"
+                    document.getElementById("unresolved").style.backgroundColor = "#f1f1f1"
+                }else if(filter=="unresolved"){
+                    for(var i=0; i<resolved.length; i++){
+                        resolved[i].style.display = "none"
+                    }
+                    for(var i=0; i<unresolved.length; i++){
+                        unresolved[i].style.display = "table-row"
+                    }
+                    document.getElementById("all").style.backgroundColor = "#f1f1f1"
+                    document.getElementById("resolved").style.backgroundColor = "#f1f1f1"
+                    document.getElementById("unresolved").style.backgroundColor = "DarkGray"
+                }
             }
         </script>
         <script src="../scripts/session.js"></script>
