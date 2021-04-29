@@ -244,6 +244,8 @@ header h1{
     background-color: white;
     border: none;
     height: 32px;
+    cursor: pointer;
+    transition: background-color 0.4s;
 }
 #show-btn:hover{
     background-color: lightgray;
