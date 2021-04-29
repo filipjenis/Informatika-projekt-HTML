@@ -112,7 +112,7 @@
             }
             function resolve(id){
                 var url = `http://mkt.myddns.me/shared/MKTechnic-website/resolve.php?name=${credentials["name"]}&password=${credentials["password"]}&id=${credentials["id"]}&resolveId=${id}` 
-               var xmlHttp = new XMLHttpRequest()
+                var xmlHttp = new XMLHttpRequest()
                 xmlHttp.open("GET",url,false)
                 xmlHttp.send(null)
                 response = xmlHttp.responseText
